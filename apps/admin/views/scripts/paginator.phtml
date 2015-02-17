@@ -1,0 +1,22 @@
+<?php if(count($this->pagesInRange) > 1): ?>
+    <?php if ($this->pageCount): ?>
+        <div class="pagination pagination-centered">
+            <ul>
+                <li>
+                    <?php $this->params['page'] = $this->previous ?>
+                    <a href="<?php echo $this->urlGetParams(null, $this->params); ?>">«</a>
+                </li>
+                <?php foreach ($this->pagesInRange as $page): ?>
+                    <li<?php if ($page == $this->current): ?> class="active" <?php endif ?>>
+                        <?php $this->params['page'] = $page ?>
+                        <a href="<?php echo $this->urlGetParams(null, $this->params); ?>"><?php echo $page; ?></a>
+                    </li>
+                <?php endforeach; ?>
+                <li>
+                    <?php $this->params['page'] = $this->next ?>
+                    <a href="<?php echo $this->urlGetParams(null, $this->params); ?>">»</a>
+                </li>
+            </ul>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

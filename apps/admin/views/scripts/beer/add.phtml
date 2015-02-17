@@ -1,0 +1,45 @@
+<?php
+
+use \WS\Tool;
+
+$this->headTitle()->append($this->translate('Dodawanie nowego piwa'));
+$this->headScript()->appendFile(Tool::getStaticUrl('js/pp_observer.js'));
+$this->headScript()->appendFile(Tool::getStaticUrl('js/pp_multilang_field.js'));
+$this->headScript()->appendFile(Tool::getStaticUrl('js/_admin/beer_get_currencies.js'));
+$this->headScript()->appendFile(Tool::getStaticUrl('js/_admin/beer_get_distributors.js'));
+$this->headScript()->appendFile(Tool::getStaticUrl('js/_admin/beer_get_regions_cities.js'));
+
+$this->headScript()->appendFile(Tool::getStaticUrl('js/_admin/wysihtml5-0.3.0.min.js'));
+$this->headScript()->appendFile(Tool::getStaticUrl('js/_admin/bootstrap-wysihtml5.js'));
+$this->headScript()->appendFile(Tool::getStaticUrl('js/_admin/locales/bootstrap-wysihtml5.' . PP_LANG . '.js'));
+$this->headLink()->appendStylesheet(Tool::getStaticUrl('css/_admin/bootstrap-wysihtml5.css'));
+
+$curJsTab = array();
+foreach($this->currencies as $cur)
+{
+    $curJsTab[] = '{ id: "' . $cur->getId() . '", 
+                     name: "' . $cur->getName() . '", 
+                     symbol: "' . $cur->getSymbol() . '"}'; 
+}
+
+$this->headScript()->appendScript('
+    var MSG_DELETE = "' . $this->translate('Usuń') . '";    
+    var currencies = [' . implode(',', $curJsTab) . '];
+        
+    $(function() {
+        $(".multilang-textarea").pp_multilang_field("beer-description");
+        $(".multilang-textarea").wysihtml5({
+            "font-styles": false,
+            "image": false,
+            "stylesheets": ["' . Tool::getStaticUrl('css/_admin/wysiwyg-color.css') . '"],
+            "locale": "' . PP_LANG . '"
+        });
+    }); 
+');
+
+?>
+
+<fieldset class="form_container">
+    <legend><?php echo $this->translate('Dodawanie nowego piwa') ?></legend>
+    <?php echo $this->form ?>
+</fieldset>

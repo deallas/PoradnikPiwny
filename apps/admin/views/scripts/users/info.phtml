@@ -1,0 +1,59 @@
+<?php 
+    
+use PoradnikPiwny\Entities\User;
+
+$this->headTitle()->append($this->translate('Informacje o użytkowniku')); 
+$metadata = $this->i_user->getMetadataArray();
+
+?>
+<fieldset class="form_container">
+    <legend><?php echo $this->translate('Informacje o użytkowniku') ?></legend>
+    <table class="table table-striped table-hover">   
+        <tr>
+            <td width="250"><?php echo $this->translate('Nazwa użytkownika:') ?></td>
+            <td><?php echo $this->i_user->getUsername() ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Podpis:') ?></td>
+            <td><?php echo $this->i_user->getVisibleName() ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Email:') ?></td>
+            <td><?php echo $this->i_user->getEmail() ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Status:') ?></td>
+            <td>
+                <?php
+                switch($this->i_user->getStatus()) {
+                    case User::STATUS_ACTIVE:
+                        echo $this->translate('Aktywny');
+                        break;
+                    case User::STATUS_INACTIVE:
+                        echo $this->translate('Nieaktywny');
+                        break;
+                    case User::STATUS_BANNED:
+                        echo $this->translate('Zbanowany');
+                        break;
+                }
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Poziom uprawnień:') ?></td>
+            <td><?php echo $this->i_user->getRole()->getName() ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Imię:') ?></td>
+            <td><?php echo (!empty($metadata['name'])) ? $metadata['name'] : '-' ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Nazwisko:') ?></td>
+            <td><?php echo (!empty($metadata['name'])) ? $metadata['surname'] : '-' ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Motyw graficzny:') ?></td>
+            <td><?php echo $this->themes[(isset($metadata['theme'])) ? $metadata['theme'] : 'default']  ?></td>
+        </tr>
+    </table>
+</fieldset>

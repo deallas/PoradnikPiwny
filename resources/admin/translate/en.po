@@ -1,0 +1,254 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Dziennik 1.0\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Michał Korus <mdeallas@gmail.com>\n"
+"Language-Team: MDTeam\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Polish\n"
+"X-Poedit-Country: POLAND\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "Użytkownik"
+msgstr "Użytkownik"
+
+msgid "Hasło"
+msgstr "Hasło"
+
+msgid "Zaloguj"
+msgstr "Zaloguj"
+
+msgid "isEmpty"
+msgstr "Pole nie może być puste"
+
+msgid "stringLengthTooShort"
+msgstr "'%value%' zawiera mniej niż %min% znaków"
+
+msgid "stringLengthTooLong"
+msgstr "'%value%' zawiera więcej niż %max% znaków"
+
+msgid "notBetween"
+msgstr "'%value%' nie zawiera się pomiędzy '%min%' a '%max%'"
+
+msgid "notBetweenStrict"
+msgstr "'%value%' nie zawiera się pomiędzy '%min%' a '%max%'"
+
+msgid "emailAddressInvalid"
+msgstr "'%value%' nie jest poprawnym adresem e-mail"
+
+msgid "emailAddressInvalidFormat"
+msgstr "'%value%' nie jest poprawnym adresem e-mail"
+
+msgid "emailAddressInvalidHostname"
+msgstr "'%hostname%' nie jest poprawnym hostem dla '%value%'"
+
+msgid "hostnameInvalidHostname"
+msgstr "'%value%' nie jest poprawnym hostem"
+
+msgid "hostnameLocalNameNotAllowed"
+msgstr "'%value%' wydaje sie byc lokalnym hostem ktory jest zabroniony"
+
+msgid "stringEmpty"
+msgstr "'%value%' jest pustą wartością"
+
+msgid "notAlnum"
+msgstr "'%value%' zawiera niedozwolone znaki. Dozwolone są tylko liczby i cyfry"
+
+msgid "regexNotMatch"
+msgstr "'%value%' nie pasuje do wzorca '%pattern%'"
+
+msgid "fileNotExistsDoesExist"
+msgstr "Brak pliku"
+
+msgid "fileUploadErrorNoFile"
+msgstr "Brak pliku"
+
+msgid "fileExtensionFalse"
+msgstr "Plik '%value' ma niewłaściwe rozszerzenie"
+
+msgid "fileFilesSizeTooBig"
+msgstr "Maksymalny rozmiar pliku wynosi %max%"
+
+msgid "fileFilesSizeTooSmall"
+msgstr "Minimalny rozmiar pliku wynosi %min%"
+
+msgid "fileImageSizeWidthTooBig"
+msgstr "Max szerokość to '%maxwidth%'"
+
+msgid "fileImageSizeHeightTooBig"
+msgstr "Max wysokość to '%maxwidth%'"
+
+msgid "notInt"
+msgstr "'%value%' nie jest liczbą"
+
+msgid "fileImageSizeNotDetected"
+msgstr "Rozmiar obrazka '%value' nie został wykryty"
+
+msgid "fileImageSizeNotReadable"
+msgstr "Plik '%value%' nie jest do odczytu lub nie istnieje"
+
+msgid "fileImageSizeWidthTooSmall"
+msgstr "Minimalna szerokość to '%minwidth%'"
+
+msgid "fileImageSizeHeightTooSmall"
+msgstr "Minimalna wysokość to '%minheight%'"
+
+msgid "missingValue"
+msgstr "Pole nie może być puste"
+
+msgid "errCaptcha"
+msgstr "Wystąpił błąd podczas walidacji captch'y"
+
+msgid "badCaptcha"
+msgstr "Wpisana wartość jest niepoprawna"
+
+msgid "The two given tokens do not match"
+msgstr "Wykryto próbę ataku CSRF"
+
+msgid "No token was provided to match against"
+msgstr "Wykryto próbę ataku CSRF"
+
+msgid "1 minute"
+msgstr "1 minutę"
+
+msgid "2 minutes"
+msgstr "2 minuty"
+
+msgid "5 minutes"
+msgstr "5 minut"
+
+msgid "10 minutes"
+msgstr "10 minut"
+
+msgid "15 minutes"
+msgstr "15 minut"
+
+msgid "30 minutes"
+msgstr "30 minut"
+
+msgid "45 minutes"
+msgstr "45 minut"
+
+msgid "1 hour"
+msgstr "1 godzinę"
+
+msgid "2 hours"
+msgstr "2 godziny"
+
+msgid "5 hours"
+msgstr "5 godzin"
+
+msgid "12 hours"
+msgstr "12 godzin"
+
+msgid "1 day"
+msgstr "1 dzień"
+
+msgid "2 days"
+msgstr "2 dni"
+
+msgid "5 days"
+msgstr "5 dni"
+
+msgid "1 week"
+msgstr "tydzień"
+
+msgid "order_beer_name"
+msgstr "Nazwa piwa"
+
+msgid "order_beer_avg"
+msgstr "Średnia ocena"
+
+msgid "order_beer_weighted_avg"
+msgstr "Średnia ocena wagowa"
+
+msgid "order_beer_status"
+msgstr "Status piwa"
+
+msgid "order_distributor_name"
+msgstr "Nazwa dystrybutora"
+
+msgid "order_manufacturer_name"
+msgstr "Nazwa wytwórcy"
+
+msgid "order_country_name"
+msgstr "Kraj"
+
+msgid "order_region_name"
+msgstr "Region"
+
+msgid "order_city_name"
+msgstr "Miasto"
+
+msgid "desc_rosnaco"
+msgstr "Rosnąco"
+
+msgid "desc_malejaco"
+msgstr "Malejaco"
+
+msgid "beer_status_aktywny"
+msgstr "Aktywny"
+
+msgid "beer_status_nieaktywny"
+msgstr "Nieaktywny"
+
+msgid "beer_status_do_zatwierdzenia"
+msgstr "Do zatwierdzenia"
+
+msgid "beer_status_zawieszony"
+msgstr "Zawieszony"
+
+msgid "order_manufacturer_website"
+msgstr "Strona WWW"
+
+msgid "order_manufacturer_email"
+msgstr "Email"
+
+msgid "order_manufacturer_address"
+msgstr "Adres"
+
+msgid "order_manufacturer_latitude"
+msgstr "Szerokość geograficzna"
+
+msgid "order_manufacturer_longitude"
+msgstr "Długość geograficzna"
+
+msgid "order_family_name"
+msgstr "Nazwa rodziny"
+
+msgid "order_currency_name"
+msgstr "Nazwa waluty"
+
+msgid "order_currency_shortcut"
+msgstr "Skrót waluty"
+
+msgid "order_currency_symbol"
+msgstr "Symbol waluty"
+
+msgid "order_user_visiblename"
+msgstr "Nazwa użytkownika"
+
+msgid "order_user_status"
+msgstr "Status użytkownika"
+
+msgid "order_role_name"
+msgstr "Nazwa roli"
+
+msgid "order_rule_priority"
+msgstr "Priorytet"
+
+msgid "order_rule_ip"
+msgstr "IP"
+
+msgid "order_rule_dateCreated"
+msgstr "Data utworzenia"
+
+msgid "order_rule_dateExpired"
+msgstr "Data wygaśnięcia"
+
+msgid "order_resgroup_name"
+msgstr "Nazwa grupy zasobów"
+

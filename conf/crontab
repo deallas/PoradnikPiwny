@@ -1,0 +1,2 @@
+* */2 * * *  /home/kormichu/NetbeansProjects/PoradnikPiwny/bin/remove-search-results
+* 0 * * *  /home/kormichu/NetbeansProjects/PoradnikPiwny/bin/update-ranking-weight-avg

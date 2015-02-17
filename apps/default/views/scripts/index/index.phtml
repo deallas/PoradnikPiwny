@@ -1,0 +1,31 @@
+<?php
+
+use WS\Tool;
+
+$this->headTitle()->append($this->translate('Strona główna'));
+$this->headScript()->appendFile(Tool::getStaticUrl('js/_default/beer_hexagon.js'));
+
+?>
+<div id="board">
+<?php foreach($this->beers as $beer): ?>
+    <div class="hex">
+        <?php 
+            $image = $beer->getImage();
+        ?>
+        <a class="hex-link" href="<?php echo $this->url() ?>">
+            <div class="hex-image"<?php if($image != null): ?> style="background: url('<?php echo $this->hexagonThumb(UPLOAD_PATH .'/images/'. $image->getPath(), 250, UPLOAD_CACHE_PATH . '/images/' . $image->getId(), Tool::getStaticUrl('/upload/_cache/images/' . $image->getId())) ?>')"<?php endif ?>></div>
+            <div class="hex-content">
+                <p class="beer-title"><?php echo $beer->getName() ?></p>
+                <p class="beer-manufacturer-title">
+                <?php 
+                     $manufacturer = $beer->getManufacturer(); 
+                     if($manufacturer != null):
+                ?>
+                <?php echo $manufacturer->getName() ?>
+                <?php endif ?>
+                </p>
+            </div>
+        </a>
+    </div>
+<?php endforeach ?>
+</div>

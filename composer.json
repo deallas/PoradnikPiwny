@@ -1,0 +1,27 @@
+{
+    "name": "kormichu/PoradnikPiwny",
+    "type": "library",
+    "version": "0.3.0",
+    "description": "Poradnik Piwny",
+    "keywords": ["poradnik piwny"],
+    "require": {
+        "php": ">=5.3.3",
+        "doctrine/orm": "2.3.*",
+        "zendframework/zendframework1": "1.12.*",
+        "symfony/console": "2.1.*",
+        "emagister/zend-form-decorators-bootstrap": "dev-master",
+        "beberlei/DoctrineExtensions": "0.1",
+        "ezyang/htmlpurifier": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "PoradnikPiwny": "library/",
+            "ZFDebug": "library/",
+            "WS": "library/",
+            "Bisna": "library/"
+        }
+    },
+    "include-path": [
+        "library/"
+    ]
+}

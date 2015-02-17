@@ -1,0 +1,49 @@
+<?php
+
+use WS\Tool;
+
+$this->headScript()->appendFile(Tool::getStaticUrl('js/jquery.mousewheel-3.0.6.pack.js'));
+$this->headScript()->appendFile(Tool::getStaticUrl('fancybox/jquery.fancybox.pack.js?v=2.1.3'));
+$this->headScript()->appendFile(Tool::getStaticUrl('fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5'));
+$this->headScript()->appendFile(Tool::getStaticUrl('fancybox/helpers/jquery.fancybox-media.js?v=1.0.5'));
+$this->headScript()->appendFile(Tool::getStaticUrl('fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7'));
+
+$this->headLink()->appendStylesheet(Tool::getStaticUrl('fancybox/jquery.fancybox.css?v=2.1.3'));
+$this->headLink()->appendStylesheet(Tool::getStaticUrl('fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5'));
+$this->headLink()->appendStylesheet(Tool::getStaticUrl('fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7'));
+
+?>
+<div class="columns_2">
+    <div class="column_1">
+        <div id="t_under">(under construction)</div>
+        <div id="logo_tekst"></div>
+    </div>
+    <div class="column_2">
+        <div id="t_serwis_informacyjny">
+            <p>Serwis<br />informacyjny</p>
+            <div class="fb-like" data-href="http://facebook.com/poradnikpiwny" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana"></div>
+        </div>
+    </div>
+    <br style="clear: both" />
+</div>
+<div id="t_jeszcze">Jeszcze ważymy piwo...</div>
+<div id="t_jesli">jeśli jesteś osobą która nie zna się do końca<br />
+na piwach ale chce poznać nowe horyzonty smaku<br />
+to ten serwis jest właśnie dla ciebie !
+</div>
+<a id="b_player" class="fancybox.iframe" href="http://youtube.com/embed/j70TXYqn6rc?autoplay=1">Oglądnij video</a>
+<script>
+    $(function() {
+	$("#b_player").fancybox({
+            maxWidth	: 800,
+            maxHeight	: 600,
+            fitToView	: false,
+            width	: '70%',
+            height	: '70%',
+            autoSize	: false,
+            closeClick	: false,
+            openEffect	: 'none',
+            closeEffect	: 'none'
+	});
+   });
+</script>

@@ -1,0 +1,67 @@
+<?php 
+
+use WS\Tool;
+
+$this->headScript()->appendFile(Tool::getStaticUrl('js/_promotion/promo.js'));
+$this->headLink()->appendStylesheet(Tool::getStaticUrl('css/_promotion/style.css'));
+$this->headLink()->appendStylesheet(Tool::getStaticUrl('css/_promotion/style_ie8.css'), 'screen', 'IE 8');
+$this->headLink()->appendStylesheet(Tool::getStaticUrl('css/_promotion/style_ie7.css'), 'screen', 'IE 7');
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>  
+        <title>Poradnik Piwny | Poznaj nowe horyzonty smaku</title> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    
+        <meta name="viewport" content="width=device-width, initial-scale=1" />      
+        <meta name="description" content="Poznaj nowe horyzonty smaku" />
+        <link rel="icon" href="<?php echo Tool::getStaticUrl('images/faviconx32.ico') ?>">
+        <link rel="apple-touch-icon" href="<?php echo Tool::getStaticUrl('images/faviconx32.ico') ?>" />
+        <link rel="apple-touch-icon" sizes="64x64" href="<?php echo Tool::getStaticUrl('images/faviconx64.ico') ?>" />
+        <link rel="apple-touch-icon" sizes="128x128" href="<?php echo Tool::getStaticUrl('images/faviconx128.ico') ?>" />
+        <base href="<?php echo PROMOTION_APPLICATION_URL ?>" />
+        <?php echo $this->headScript() . PHP_EOL ?>
+        <?php echo $this->headLink() . PHP_EOL ?>
+    </head>
+    <body>
+        <div id="logo_top"></div>
+        <div id="container">  
+            <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/pl_PL/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            </script>
+            <div id="left_container"></div>
+            <div id="right_container">
+                <?php echo $this->layout()->content; ?> 
+            </div>
+        </div>
+        <div id="footer">
+            <div id="footer_content">
+                <div id="t_newsletter">NEWSLETTER</div>
+                <div id="t_podaj">Podaj nam swój email, wyślemy Ci informacje<br />jak serwis zostanie uruchomiony</div>
+                <div id="newsletter_container">
+                    <form src="#" method="POST" id="form_newsletter">
+                        <input type="text" name="i_email" id="i_email" />
+                        <input type="submit" id="i_submit" value="Wyślij" />
+                        <p id="t_statute"><input type="checkbox" name="i_statute" id="i_statute" value="1" /> wyrażam zgodę na otrzymanie maili</p>
+                    </form>
+                    <div id="form_msg"></div>
+                </div>
+                <div id="linki">
+                    <div id="serwisy">
+                        <a href="http://facebook.com/poradnikpiwny">Facebook</a> | <a href="http://plus.google.com/u/0/b/112980482691933668787/112980482691933668787/posts">Google Plus</a> | <a href="http://twitter.com/poradnikpiwny">Twitter</a> | <a href="http://youtube.com/poradnikpiwny">YouTube</a>
+                    </div>
+                </div>
+
+                <div id="t_rok">
+                    &copy; 2012 Poradnik Piwny
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,368 @@
+html,
+body {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+.admin-container {
+    margin: 0 auto;
+    min-height:100%;
+    position:relative;
+}
+.content-container {
+    padding-top: 80px;
+    position: relative;
+    bottom: 30px;
+}
+#menu-left {
+    padding: 8px 0;
+}
+.login-container {
+    margin: 0px auto !important;
+    float: none !important;
+}
+.form-horizontal .control-group {
+    margin-bottom: 10px;
+}
+.table-middle td {
+    vertical-align: middle;
+}
+.alert p {
+    padding-top: 10px;
+}
+.nav-list .nav-header {
+    cursor: default;
+    pointer-events: none;
+}
+.help-block {
+    color: #CCC;
+}
+#addParent, #addPrice {
+    margin-left: 190px;
+    margin-bottom: 20px;
+}
+.form-horizontal .controls {
+    margin-right: 10px;
+    margin-left: 30px !important;
+    float: left;
+    width: 770px;
+}
+.nav-previous a {
+    color: #AAA;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 20px;
+}
+.table th {
+    font-size: 13px;
+    white-space: nowrap;
+    width: 1px;
+}
+.table th a {
+    font-size: 13px;
+    text-decoration: none;
+}
+.table tr.more {
+    display: none;
+}
+.table_nr {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+.breadcrumb .active a {
+    color: #999999;
+}
+.input-textarea {
+    height: 200px;
+    width: 100%;
+}
+.input-small-textarea {
+    height: 50px;
+}
+.date_day, .date_month, .date_hour, .date_minute {
+    width: 20px !important;
+}
+.date_year {
+    width: 35px !important;
+}
+.controls span {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.nav-list {
+    font-size: 13px;
+}
+.table-standard-formed th, .table-standard-formed td, .table-standard th, .table-standard td {
+    white-space: nowrap;
+    width: 1px;
+    padding: 8px;
+}
+.table-standard-formed p, .table-standard p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.blocker-message-title {
+    font-size: 12px;
+    color: #999;
+}
+.blocker-message {
+    font-style: italic;
+    font-size: 12px;
+    text-align: left !important;
+}
+.table-nothing {
+    text-align: center !important;
+    font-style: italic;
+}
+.table-standard th:last-child, .table-standard td:last-child {
+    width: auto;
+}
+.table-standard-formed th:last-child, .table-standard-formed td:last-child {
+    text-align: right;
+}
+.table-info th:first-child, .table-info td:first-child {
+    width: 250px;
+}
+[class^="icon-"], [class*=" icon-"] {
+    background: none !important;
+}
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    font-size: 30px;
+    margin-left: 30px;
+}
+.avg_rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    font-size: 15px;
+    margin-left: 5px;
+}
+.rating .star, .avg_rating .star {
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    margin-left: -3px;
+}
+.rating .star:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+.avg_rating .star:hover {
+    cursor: default;
+    text-decoration: none;
+}
+.rating .star:before, .avg_rating .star:before {
+    content: "\f089";
+}
+.rating .star:hover:before,
+.rating .star:hover ~ .star:before {
+    content: "\f089";
+    color: #e3cf7a;
+}
+.rating .star_rotated, .avg_rating .star_rotated
+{
+    margin-right: 3px;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+    -ms-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -o-transform:matrix(-1, 0, 0, 1, 0, 0);
+    filter: progid:DXImageTransform.Microsoft.Matrix(
+        M11=-1,
+        M12=0,
+        M21=0,
+        M22=1,
+        SizingMethod='auto expand');
+}
+.rating .star_checked{
+    color: #e3cffa;
+}
+.avg_rating .star_checked{
+    color: #e3cf7a;
+}
+.rating .star_nonchecked, .avg_rating .star_nonchecked{
+    color: #999999;
+}
+#footer {
+    text-align: right;
+    border-top: 1px solid #EEE;
+    padding: 5px 0;
+    color: #CCC;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+legend span {
+    font-size: 13px;
+}
+#beer_info_container {
+    position: relative;
+}
+#beer_info_op_box {
+    position: absolute;
+    right: 0;
+    top: 12px;
+}
+.help-inline {
+    display: inline-block !important;
+    margin: 2px 0 3px 0 !important;
+}
+#map_field {
+    margin-left: 190px;
+    margin-bottom: 20px;
+}
+
+#map_canvas {
+    width: 100%;
+    height: 500px;
+}
+
+.multilang-field {
+    list-style: none;
+    margin: 0;
+}
+
+.multilang-field li {
+    display: none;
+}
+
+.multilang-field li.active {
+    display: block;
+}
+
+.multilang-tab {
+    list-style: none;
+    margin: -2px 0 10px 1px;
+}
+
+.multilang-tab li {
+    display: inline-block;
+    border: 1px solid #E5E5E5;
+    border-top: 0;
+    padding: 5px 10px 5px 10px;
+}
+
+.multilang-tab li.active {
+    background: #EEEEEE;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.multilang-tab li.active a {
+    pointer-events: none;
+    cursor: default;
+    color: #000;
+}
+
+.controls-currency-multiplier {
+    width: 40px;
+}
+
+.t_price_number, .t_price_sizeOfBottle {
+    width: 50px;
+}
+
+.s_price_currency, .t_price_sizeOfBottle {
+    margin-left: 10px;
+}
+
+.t_price_sizeOfBottle_container {
+    margin-right: 10px;
+}
+
+.t_separator {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.t_min, .t_max {
+    width: 50px;
+}
+
+.image_dateadded {
+    color: #666;
+    margin: 10px 0 0 0;
+    font-size: 11px;
+}
+
+#form-login .controls {
+    width: auto;
+}
+
+#options_container {
+    float: right;
+    font-size: 12px;
+}
+
+#b_options_container {
+    color: #999;
+}
+
+#b_options_container i {
+    padding-right: 5px;
+}
+
+#b_options_container:hover {
+    text-decoration: none;
+}
+
+#options_container_main_table {
+    width: 100%;
+}
+
+#options_container_form {
+    display: none;
+}
+
+#options_container_right_table td:first-child {
+    width: 150px;
+}
+
+#options_container_right_table td {
+    padding-bottom: 10px;
+}
+
+#b_options_container_left_table button {
+    margin-top: 15px;
+}
+
+#b_options_container_left_table td {
+    padding-bottom: 0 !important;
+}
+
+#b_options_container_left_table td:first-child {
+    padding-right: 2px !important;
+}
+
+#options_container_orders_availables, #options_container_orders {
+    width: 200px;
+    height: 200px;
+}
+
+#options_container_right_table {
+    width: 100%;
+}
+
+#options_container_right_table td {
+    width: 45%;
+    text-align: left;
+}
+
+#options_container_right_table td:first-child {
+    text-align: right;
+    padding-right: 10px;
+}
+
+@media all and (max-width: 800px) {
+    .s_price_currency {
+        width: 100px !important;
+    }
+    
+    .t_price_number, .t_price_sizeOfBottle {
+        width: 50px !important;
+    }
+}

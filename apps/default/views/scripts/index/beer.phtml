@@ -1,0 +1,255 @@
+<?php 
+
+use PoradnikPiwny\Entities\Beer; 
+
+/* @var $beer \PoradnikPiwny\Entities\Beer */
+$beer = $this->beer;
+
+?>
+
+<fieldset class="form_container">
+    <legend><?php echo $beer->getName() ?></legend>
+    <table>   
+        <tr>
+            <td width="250"><?php echo $this->translate('Nazwa:') ?></td>
+            <td><?php echo $beer->getName() ?></td>
+        </tr>
+        <tr>
+            <td width="250"><?php echo $this->translate('Wytwórca:') ?></td>
+            <td>
+                <?php 
+                    $manufacturer = $beer->getManufacturer();
+                    if($manufacturer == null) {
+                        echo '-';
+                    } else {
+                        echo $manufacturer->getName();
+                    }
+                ?>
+            </td>            
+        </tr>
+        <tr>
+            <td width="250"><?php echo $this->translate('Dystrybutor:') ?></td>
+            <td>
+                <?php 
+                    if($manufacturer == null) {
+                        echo '-';
+                    } else {
+                        $distributor = $manufacturer->getDistributor();
+                        if($distributor == null) {
+                            echo '-';
+                        } else {
+                            echo $distributor->getName();
+                        } 
+                    }
+                ?>
+            </td>            
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Opis:') ?></td>
+            <td>
+                <?php
+                    $description = $beer->getDescription();
+                    echo (empty($description) ? '-' : $description);
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Cena detaliczna:') ?></td>
+            <td>
+                <?php
+                    $price = $beer->getPrice();
+                    echo (($price == 0) ? '-' : number_format($price, 2) . ' zł');
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Zawartość alkoholu:') ?></td>
+            <td>
+                <?php
+                    $alcohol = $beer->getAlcohol();
+                    echo (($alcohol == 0) ? '-' : number_format($alcohol, 1) . ' %'); 
+                ?> 
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Ekstrakt:') ?></td>
+            <td>
+                <?php
+                    $extract = $beer->getExtract();
+                    echo (($extract == 0) ? '-' : number_format($extract, 1). ' %');
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Piana:') ?></td>
+            <td>
+                <?php 
+                    $flavor = $beer->getFlavor();
+                    echo (empty($flavor) ? '-' : $flavor);
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Aromat:') ?></td>
+            <td>
+                <?php 
+                    $foam = $beer->getFoam();
+                    echo (empty($foam) ? '-' : $foam);
+                ?>
+            </td>
+        </tr>  
+        <tr>
+            <td><?php echo $this->translate('Kolor:') ?></td>
+            <td>
+                <?php 
+                    $color = $beer->getColor();
+                    echo (empty($color) ? '-' : $color);
+                ?>
+            </td>
+        </tr> 
+        <tr>
+            <td><?php echo $this->translate('Słód:') ?></td>
+            <td>
+            <?php 
+                switch($beer->getMalt()) 
+                {
+                    case Beer::SLOD_PSZENNY: 
+                        echo $this->translate('Pszenny');
+                        break;
+                    case Beer::SLOD_JECZMIENNY:
+                        echo $this->translate('Jęczmienny');
+                        break;
+                    case Beer::SLOD_INNY:
+                        echo $this->translate('Inny');
+                        break;
+                    default:
+                        echo ' - ';
+                }
+            ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Rodzina piwa:') ?></td>
+            <td>
+            -
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Typ:') ?></td>
+            <td>
+            <?php 
+                switch($beer->getType()) 
+                {
+                    case Beer::PIWO_BEZALKOHOLOWE: 
+                        echo $this->translate('Bezalkoholowe');
+                        break;
+                    case Beer::PIWO_LEKKIE:
+                        echo $this->translate('Lekkie');
+                        break;
+                    case Beer::PIWO_PELNE:
+                        echo $this->translate('Pełne');
+                        break;
+                    case Beer::PIWO_MOCNE:
+                        echo $this->translate('Mocne');
+                        break;
+                    default:
+                        echo ' - ';
+                }
+            ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Filtrowane:') ?></td>
+            <td>
+            <?php 
+                switch($beer->getFiltered()) 
+                {
+                    case Beer::FILTROWANE_TAK: 
+                        echo $this->translate('Tak');
+                        break;
+                    case Beer::FILTROWANE_NIE:
+                        echo $this->translate('Nie');
+                        break;
+                    default:
+                        echo ' - ';
+                }
+            ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Pasteryzowane:') ?></td>
+            <td>
+            <?php 
+                switch($beer->getPasteurized()) 
+                {
+                    case Beer::PASTERYZOWANE_TAK: 
+                        echo $this->translate('Tak');
+                        break;
+                    case Beer::PASTERYZOWANE_NIE:
+                        echo $this->translate('Nie');
+                        break;
+                    default:
+                        echo ' - ';
+                }
+            ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Miejsce warzenia:') ?></td>
+            <td>
+            <?php 
+                switch($beer->getPlaceOfBrew()) 
+                {
+                    case Beer::MIEJSCE_WARZENIA_BROWAR: 
+                        echo $this->translate('Browar');
+                        break;
+                    case Beer::MIEJSCE_WARZENIA_DOM:
+                        echo $this->translate('Dom');
+                        break;
+                    case Beer::MIEJSCE_WARZENIA_RESTAURACJA:
+                        echo $this->translate('Restauracja');
+                        break;
+                    default:
+                        echo ' - ';
+                }
+            ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Kraj pochodzenia:') ?></td>
+            <td>
+            <?php 
+                $country = $beer->getCountry();
+                if($country == null) echo '-';
+                else {
+                    echo $country->getName();
+                }
+            ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Region:') ?></td>
+            <td>
+            <?php 
+                $region = $beer->getRegion();
+                if($region == null) echo '-';
+                else {
+                    echo $region->getName();
+                }
+            ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Miasto:') ?></td>
+            <td>
+            <?php 
+                $city = $beer->getCity();
+                if($city == null) echo '-';
+                else {
+                    echo $city->getName();
+                }
+            ?>
+            </td>
+        </tr>
+    </table>
+</fieldset>

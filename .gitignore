@@ -1,0 +1,13 @@
+*.phar
+*.lock
+*.log
+access.log
+error.log
+vendor.php
+
+.buildpath
+.project
+.settings/*
+vendor/*
+tmp/*
+public/static/upload/*

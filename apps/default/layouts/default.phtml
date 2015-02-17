@@ -1,0 +1,22 @@
+<?php echo $this->doctype() . PHP_EOL ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <?php echo $this->headTitle() . PHP_EOL ?>
+        <?php echo $this->headMeta() . PHP_EOL ?>
+        <?php echo $this->headLink() . PHP_EOL ?>
+        <?php echo $this->headScript() . PHP_EOL ?>
+        <base href="<?php echo DEFAULT_APPLICATION_URL ?>" />
+    </head>
+    <body>
+        <div id="main-container">
+            <div class="row-container">
+                <div id="menu-container">
+
+                </div>
+                <div id="content-container">
+                    <?php echo $this->layout()->content; ?>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

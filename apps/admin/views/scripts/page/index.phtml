@@ -1,0 +1,22 @@
+<?php $this->headTitle()->append($this->translate('Ustawienia strony')); ?>
+<fieldset class="form_container">
+    <legend><?php echo $this->translate('Informacje o stronie') ?></legend>
+    <table class="table table-striped table-hover">
+        <tr>
+            <td width="250"><?php echo $this->translate('Tytuł:') ?></td>
+            <td><?php echo $this->settings['head']['title']['value'] ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Separator pomiędzy tytułami:') ?></td>
+            <td><?php echo $this->settings['head']['title']['separator'] ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Słowa kluczowe:') ?></td>
+            <td><?php echo $this->settings['head']['keywords'] ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Opis:') ?></td>
+            <td><?php echo $this->settings['head']['description'] ?></td>
+        </tr>
+    </table>
+</fieldset>

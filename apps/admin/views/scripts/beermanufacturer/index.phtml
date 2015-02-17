@@ -1,0 +1,150 @@
+<?php 
+
+use WS\Tool;
+
+$title = $this->translate('Lista wytwórców dystrybutora "' . $this->distributor->getName() . '"');
+
+$this->headTitle()->append($title);           
+
+$this->headScript()->appendScript(
+    'var MSG_DANGER_BTN = "' . $this->translate('Czy na pewno chcesz usunąć tego wytwórcę ?') . '"' . PHP_EOL . 
+    '$(function() {$(".table-options a").tooltip() });'
+);
+
+$nr = ($this->manufacturers->getCurrentPageNumber()-1) * $this->manufacturers->getItemCountPerPage();
+?>
+<?php echo $this->render('confirm.phtml') ?>
+<fieldset class="table_container">
+    <legend>
+        <?php echo $title ?>
+        <span id="options_container">
+            <a href="#" id="b_options_container"><i class="icon-caret-right"></i> <?php echo $this->translate('Opcje') ?></a>
+        </span>
+    </legend>
+    <?php echo $this->render('paginator_options.phtml') ?>
+    
+    <table class="table table-striped table-hover table-standard-formed">
+        <tr>
+            <th><?php echo $this->translate('Nr') ?></th>
+            <th></th>
+            <?php foreach($this->options['orders'] as $order): ?>
+            <?php 
+                $params = array(
+                    'items' => $this->options['items'],
+                    'order' => $order,
+                    'desc' => (int)$this->options['desc'],
+                    'page' => $this->options['page']
+                );
+            
+                if($this->options['order'] == $order) {
+                    $params['desc'] = (int)(!$this->options['desc']);
+                }
+                $url = $this->urlGetParams(null, $params);
+            ?>
+            <th>
+                <a href="<?php echo $url; ?>">
+                    <?php echo $this->translate('order_' . $order) ?> <?php if($order == $this->options['order']):?><i class="<?php if($this->options['desc']): ?>icon-caret-down<?php else: ?>icon-caret-up<?php endif; ?>"></i><?php endif; ?>
+                </a>
+            </th>
+            <?php endforeach; ?>
+            <th></th>
+        </tr>
+        <?php if(count($this->manufacturers) == 0): ?>
+        <tr>
+            <td colspan="<?php echo count($this->options['orders']) + 3 ?>" class="table-nothing"><?php echo $this->translate('Nie dodano żadnych dystrybutorów') ?></td>
+        </tr>
+        <?php else: ?>
+        <?php foreach($this->manufacturers as $manufacturer): ?>
+        <tr>
+            <td class="table_nr"><?php echo ++$nr ?></td>  
+            <td>
+                <?php
+                    $image = $manufacturer->getBeerManufacturerImage();
+                    if($image != null):
+                ?>
+                <img src="<?php echo $this->squareThumb(UPLOAD_PATH .'/images/'. $image->getPath(), 50, UPLOAD_CACHE_PATH . '/images/' . $image->getId(), Tool::getStaticUrl('/upload/_cache/images/' . $image->getId())) ?>" class="img-polaroid" alt="" />
+                <?php endif ?>
+            </td>
+            <?php foreach($this->options['orders'] as $order): ?>
+            <?php if($order == 'manufacturer_name'): ?>
+            <td><?php echo $manufacturer->getName() ?></td>
+            <?php elseif($order == 'manufacturer_website'): ?>
+            <td><?php echo $manufacturer->getWebsite() ?></td>
+            <?php elseif($order == 'manufacturer_email'): ?>
+            <td><?php echo $manufacturer->getEmail() ?></td>
+            <?php elseif($order == 'manufacturer_address'): ?>
+            <td><?php echo $manufacturer->getAddress() ?></td>
+            <?php elseif($order == 'manufacturer_latitude'): ?>
+            <td><?php echo $manufacturer->getLatitude() ?></td>
+            <?php elseif($order == 'manufacturer_longitude'): ?>
+            <td><?php echo $manufacturer->getLongitude() ?></td>
+            <?php elseif($order == 'country_name'): ?>
+                <td>
+                    <?php
+                        $country = $manufacturer->getCountry();
+                        if($country == null)
+                            echo '-';
+                        else {
+                            echo $country->getName();
+                        }
+                    ?>
+                </td>
+            <?php elseif($order == 'region_name'): ?>
+                <td>
+                    <?php
+                        $region = $manufacturer->getRegion();
+                        if($region == null)
+                            echo '-';
+                        else {
+                            echo $region->getName();
+                        }
+                    ?>
+                </td>
+            <?php elseif($order == 'city_name'): ?>
+                <td>
+                    <?php
+                        $city = $manufacturer->getCity();
+                        if($city == null)
+                            echo '-';
+                        else {
+                            echo $city->getName();
+                        }
+                    ?>
+                </td>
+            <?php endif ?>
+            <?php endforeach ?>
+            <td class="table-options">
+                <?php
+                    $getParams = array(
+                        'submit' => '',
+                        'manufacturer' => $manufacturer->getId(),
+                        'distributor' => $manufacturer->getDistributor()->getId()
+                    );
+                    $urlParams = array(
+                        'controller' => 'beer',
+                        'action' => 'search'
+                    );
+                    $url = $this->urlGetParams($urlParams, $getParams, null, true);             
+                ?>
+                
+                <a href="<?php echo $url ?>" class="btn btn-mini" data-toggle="tooltip" data-original-title="<?php echo $this->translate('Lista piw') ?>"><i class="icon-glass"></i></a>
+                <a href="<?php echo $this->baseUrl('/beermanufacturerimage/index/id/' . $manufacturer->getId()) ?>" class="btn btn-mini" data-toggle="tooltip" data-original-title="<?php echo $this->translate('Galeria') ?>"><i class="icon-globe"></i></a>
+                <a href="<?php echo $this->baseUrl('/beermanufacturer/edit/id/' . $manufacturer->getId()) ?>" class="btn btn-mini" data-toggle="tooltip" data-original-title="<?php echo $this->translate('Edytuj') ?>"><i class="icon-edit"></i></a>
+                <a href="<?php echo $this->baseUrl('/beermanufacturer/delete/id/' . $manufacturer->getId()) ?>" class="btn btn-confirm btn-danger btn-mini" data-toggle="tooltip" data-original-title="<?php echo $this->translate('Usuń') ?>"><i class="icon-trash icon-white"></i></a>
+            </td>
+  
+        </tr>
+        <?php endforeach; ?>
+        <?php endif ?>
+    </table>
+    <?php echo $this->paginationControl($this->manufacturers,
+                                'Sliding',
+                                'paginator.phtml', 
+                                array(
+                                    'params' => array(
+                                        'items' => $this->items,
+                                        'order' => $this->order,
+                                        'desc' => (int)($this->desc)
+                                    )
+                                )); ?>
+</fieldset>

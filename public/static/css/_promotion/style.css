@@ -1,0 +1,307 @@
+@font-face {
+    font-family: 'coolvetica';letter-spacing
+    src: url('coolvetica.ttf');
+} 
+@font-face {
+    font-family: 'SWZ721BC';
+    src: url('SWZ721BC.ttf');
+} 
+/* http://meyerweb.com/eric/tools/css/reset/ 
+v2.0 | 20110126
+License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*--------------------- koniec reset ----------------------*/
+/*---------------------------------------------------------*/
+
+body, html {
+    width:100%;
+    height:100%;
+}
+
+body {
+    background: #065597;
+    font-family: "coolvetica", sans-serif;
+    color: white;
+    text-transform: uppercase;
+    overflow-x: hidden;
+}
+
+a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#logo_top {
+    background: url('../../images/_promotion/logo_top.png') no-repeat;
+    width: 1092px;
+    height: 112px;
+    display: block;
+    margin: 0 auto;
+}
+
+#footer {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    background: #142642;
+    height: 150px;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+#container {
+    width: 1176px;
+    margin: 0 auto;
+    position: relative;
+    height: 518px;
+}
+
+#left_container {
+    width: 668px;
+    height: 734px;
+    background: url('../../images/_promotion/butelki_cien.png') no-repeat;
+    position: absolute;
+    top: -112px;
+}
+
+#right_container {
+    width: 676px;
+    position: absolute;
+    left: 500px;
+}
+
+#logo_tekst {
+    background: url('../../images/_promotion/logo_tekst.png') no-repeat; 
+    width: 300px;
+    height: 163px;
+}
+
+#t_under {
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+#t_jeszcze	{
+    font-size: 36px;
+    margin-bottom: 20px;
+    margin-left: 17px;
+    margin-top: 30px;
+    width: 500px;
+}
+
+#t_jesli	{
+    font-size: 22px;
+    line-height: 25px;
+    margin-left: 35px;
+    text-indent: 35px;
+    width: 100%;
+}
+
+#t_serwis_informacyjny {
+    font-family: 'SWZ721BC', sans-serif;
+    font-size: 33px;
+    letter-spacing: -2px;
+    position: relative;
+    top: 45px;
+}
+
+.columns_2 {
+    width: 100%;
+}
+
+.columns_2 .column_2 {
+    width: 50%;
+    float: right;
+}
+
+.columns_2 .column_1 {
+    width: 50%;
+    float: left;
+}
+
+#b_player {
+    background: url("../../images/_promotion/play.png") no-repeat scroll right top;
+    cursor: pointer;
+    display: block;
+    font-size: 36px;
+    font-weight: bold;
+    height: 85px;
+    letter-spacing: -2px;
+    margin-left: 35px;
+    margin-top: 58px;
+    padding-top: 22px;
+    width: 440px;
+}
+
+#b_player:hover {
+    text-decoration: none;
+}
+
+#footer_content {
+    width: 1000px;
+    margin: 0 auto;
+    font-family: MyriadPro-Regular, 'Myriad Pro Regular', MyriadPro, 'Myriad Pro', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    position: relative;
+    height: 150px;
+}
+
+#t_rok {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-transform: none;
+}
+
+#t_newsletter {
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: -3px;
+}
+
+#t_podaj {
+    font-size: 24px;
+    line-height: 25px;
+    font-weight: bold;
+    letter-spacing: -2px;
+    margin-top: 20px;
+}
+
+#linki {
+    bottom: 0;
+    position: absolute;
+    text-transform: none;
+    width: 800px;
+}
+
+#serwisy {
+    margin-top: 35px;
+    width: 300px;
+}
+
+#newsletter_container {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    text-transform: none;
+    margin-top: 30px;
+    width: 350px;
+}
+
+#form_newsletter {
+    width: 100%;
+}
+
+#i_email, #i_submit {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 0px;
+    padding-left: 6px;
+    padding-right: 6px;
+    height: 35px;
+    line-height: 35px;
+    display: inline-block;
+}
+
+#i_email {
+    position: relative;
+    z-index: 2;
+    vertical-align: top;
+    width: 250px;
+}
+
+#i_submit {
+    background: #0EAAFF;
+    color: #FFF;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    left: -10px;
+    z-index: 1;
+    padding-left: 10px !important;
+    vertical-align: top;
+    font-size: 15px;
+}
+
+#i_submit:disabled {
+    color: #AAA;
+    background: #065597;
+}
+
+#i_accept {
+    margin-top: 5px;
+}
+
+#form_msg {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.error_msg {
+    color: #EF9785;
+    font-size: 12px !important;
+}
+
+.error_email {
+    background: #EF9785;
+    border: 2px solid #F1B4A8 !important;
+}
+
+.error_statute {
+    color: #EF9785;
+}
+
+.fb-like {
+    margin-top: 20px;
+}

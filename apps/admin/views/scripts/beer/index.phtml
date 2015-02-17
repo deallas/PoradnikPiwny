@@ -1,0 +1,271 @@
+<?php 
+
+use WS\Tool,
+    PoradnikPiwny\Entities\Beer;
+
+$title = $this->translate('Lista piw');
+
+$this->headTitle()->append($title);
+$this->headScript()->appendFile(Tool::getStaticUrl('js/_admin/spin.js'));
+$this->headScript()->appendFile(Tool::getStaticUrl('js/_admin/beer_index.js'));;
+
+const STARS = 10;
+
+$this->headScript()->appendScript(
+        'var stars = '. STARS . PHP_EOL .
+        'var MSG_DANGER_BTN = "' . $this->translate('Czy na pewno chcesz usunąć dane piwo ?') . '"' . PHP_EOL .
+        'var MSG_RANKING_TITLE = "' . $this->translate('Oceń piwo') . '"' . PHP_EOL .
+        'var MSG_RANKING_ADDED = "' . $this->translate('Oceniono') . '"' . PHP_EOL .
+        'var MSG_RANKING_A = "' . $this->translate('Wyśmienite') . '"' . PHP_EOL .
+        'var MSG_RANKING_B = "' . $this->translate('Bardzo dobre') . '"' . PHP_EOL .
+        'var MSG_RANKING_C = "' . $this->translate('Solidne') . '"' . PHP_EOL .
+        'var MSG_RANKING_D = "' . $this->translate('Dobre') . '"' . PHP_EOL .
+        'var MSG_RANKING_E = "' . $this->translate('Dostateczne') . '"' . PHP_EOL .
+        'var MSG_RANKING_F = "' . $this->translate('Słabe') . '"' . PHP_EOL .
+        'var MSG_RANKING_G = "' . $this->translate('Mierne') . '"' . PHP_EOL .
+        'var MSG_RANKING_H = "' . $this->translate('Beznadziejne') . '"' . PHP_EOL .
+        'var MSG_RANKING_I = "' . $this->translate('Fatalne') . '"' . PHP_EOL .
+        'var MSG_RANKING_J = "' . $this->translate('Tragiczne') . '"' . PHP_EOL . 
+        '$(function() {
+            $(".table-options-top a").tooltip(); 
+            $(".table-options-bottom span").tooltip({ placement: "bottom" });
+         });'
+);
+$nr = ($this->beers->getCurrentPageNumber()-1) * $this->beers->getItemCountPerPage();
+
+?>
+<?php echo $this->render('confirm.phtml') ?>
+
+<fieldset class="table_container">
+    <legend>
+        <?php echo $title ?>
+        <span id="options_container">
+            <a href="#" id="b_options_container"><i class="icon-caret-right"></i> <?php echo $this->translate('Opcje') ?></a>
+        </span>
+    </legend>
+    <?php echo $this->render('paginator_options.phtml') ?>
+    
+    <table class="table table-striped table-hover table-standard-formed">
+        <tr>
+            <th class="table_nr">#</th>
+            <th></th>
+            <?php foreach($this->options['orders'] as $order): ?>
+            <?php 
+                $params = array(
+                    'items' => $this->options['items'],
+                    'order' => $order,
+                    'desc' => (int)$this->options['desc'],
+                    'page' => $this->options['page']
+                );
+            
+                if($this->options['order'] == $order) {
+                    $params['desc'] = (int)(!$this->options['desc']);
+                }
+                $url = $this->urlGetParams(null, $params);
+            ?>
+            <th>
+                <a href="<?php echo $url; ?>">
+                    <?php echo $this->translate('order_' . $order) ?> <?php if($order == $this->options['order']):?><i class="<?php if($this->options['desc']): ?>icon-caret-down<?php else: ?>icon-caret-up<?php endif; ?>"></i><?php endif; ?>
+                </a>
+            </th>
+            <?php endforeach; ?>
+            <th></th>
+        </tr>
+        <?php if(count($this->beers) == 0): ?>
+        <tr>
+            <td colspan="<?php echo count($this->options['orders']) + 3 ?>" class="table-nothing"><?php echo $this->translate('Nie dodano żadnych piw') ?></td>
+        </tr>
+        <?php else: ?>
+            <?php foreach($this->beers as $beer): ?>
+            <tr>
+                <td class="table_nr">
+                    <?php echo ++$nr ?>
+                </td> 
+                <td>
+                    <?php
+                        $image = $beer->getImage();
+                        if($image != null):
+                    ?>
+                    <img src="<?php echo $this->squareThumb(UPLOAD_PATH .'/images/'. $image->getPath(), 50, UPLOAD_CACHE_PATH . '/images/' . $image->getId(), Tool::getStaticUrl('/upload/_cache/images/' . $image->getId())) ?>" class="img-polaroid" alt="" />
+                    <?php endif ?>
+                </td>
+                <?php foreach($this->options['orders'] as $order): ?>
+                <?php if($order == 'beer_name'): ?>
+                    <td>
+                        <p style="width: 150px">
+                            <a href="<?php echo $this->baseUrl('/beer/info/id/' . $beer->getId()) ?>" /><?php echo $beer->getName() ?></a>
+                        </p>
+                        <p>
+                            <?php 
+                                switch($beer->getStatus()) {
+                                    case Beer::STATUS_AKTYWNY:
+                                        echo '<span class="label label-success">' . $this->translate('Aktywny') . '</span>';
+                                        break;
+                                    case Beer::STATUS_DO_ZATWIERDZENIA:
+                                        echo '<span class="label label-info">' . $this->translate('Do zatwierdzenia') . '</span>';
+                                        break;                             
+                                    case Beer::STATUS_NIEAKTYWNY:
+                                        echo '<span class="label label-important">' . $this->translate('Nieaktywny') . '</span>';
+                                        break;
+                                    case Beer::STATUS_ZAWIESZONY:
+                                        echo '<span class="label label-inverse">' . $this->translate('Zawieszony') . '</span>';
+                                        break;                                 
+                                }
+                            ?>
+                        </p>
+                    </td>                   
+                <?php elseif($order == 'manufacturer_name'): ?>
+                    <td>
+                        <p style="width: 150px">
+                        <?php 
+                            $manufacturer = $beer->getManufacturer();
+                            if($manufacturer == null)
+                                echo '-';
+                            else {
+                                $url = $this->baseUrl('/beermanufacturer/info/id/' . $manufacturer->getId());
+                                echo '<a href="' . $url . '">' . $manufacturer->getName() . '</a>';
+                            }
+                        ?>
+                        </p>
+                    </td>
+                <?php elseif($order == 'distributor_name'): ?>
+                    <td>
+                        <p style="width: 150px">
+                        <?php
+                            $manufacturer = $beer->getManufacturer();
+                            if($manufacturer == null)
+                                echo '-';
+                            else {
+                                echo $manufacturer->getDistributor()->getName();
+                            }
+                        ?>
+                        </p>
+                    </td>
+                <?php elseif($order == 'beer_avg'): ?>
+                    <?php $avg = $beer->getRankingAvg() ?>
+                    <td class="avg">
+                    <?php if($avg != 0 && $avg != null): echo number_format($avg, 2, '.', ''); else: ?>0.00<?php endif ?>
+                    <span class="avg_rating">
+                    <?php 
+                        $stars_half=$avg*2;
+                        for($i=0; $i < STARS; $i++)
+                        {
+                            if($i%2==0)
+                            {
+                                if(STARS-$i<=$stars_half) {
+                                    echo '<a class="star star_rotated star_checked"></a>';
+                                } else {
+                                    echo '<a class="star star_rotated star_nonchecked"></a>';
+                                }
+                            } else {
+                                if(STARS-$i<=$stars_half) {
+                                    echo '<a class="star star_checked"></a>';
+                                } else {
+                                    echo '<a class="star star_nonchecked"></a>';
+                                }
+                            }
+                        }
+                    ?>
+                    </span>
+                    </td> 
+                <?php elseif($order == 'beer_weighted_avg'): ?>
+                    <?php $avgW = $beer->getRankingWeightedAvg() ?>
+                    <td class="avg">
+                    <?php if($avgW != 0 && $avgW != null): echo number_format($avgW, 2, '.', ''); else: ?>0.00<?php endif ?>
+                    <span class="avg_rating">
+                    <?php 
+                        $stars_half=$avgW*2;
+                        for($i=0; $i < STARS; $i++)
+                        {
+                            if($i%2==0)
+                            {
+                                if(STARS-$i<=$stars_half) {
+                                    echo '<a class="star star_rotated star_checked"></a>';
+                                } else {
+                                    echo '<a class="star star_rotated star_nonchecked"></a>';
+                                }
+                            } else {
+                                if(STARS-$i<=$stars_half) {
+                                    echo '<a class="star star_checked"></a>';
+                                } else {
+                                    echo '<a class="star star_nonchecked"></a>';
+                                }
+                            }
+                        }
+                    ?>
+                    </span>
+                    </td> 
+                <?php elseif($order == 'country_name'): ?>
+                    <td>
+                        <?php
+                            $country = $beer->getCountry();
+                            if($country == null)
+                                echo '-';
+                            else {
+                                echo $country->getName();
+                            }
+                        ?>
+                    </td>
+                <?php elseif($order == 'region_name'): ?>
+                    <td>
+                        <?php
+                            $region = $beer->getRegion();
+                            if($region == null)
+                                echo '-';
+                            else {
+                                echo $region->getName();
+                            }
+                        ?>
+                    </td>
+                <?php elseif($order == 'city_name'): ?>
+                    <td>
+                        <?php
+                            $city = $beer->getCity();
+                            if($city == null)
+                                echo '-';
+                            else {
+                                echo $city->getName();
+                            }
+                        ?>
+                    </td>
+                <?php endif ?>
+                <?php endforeach ?>
+                <td>
+                    <p class="table-options-top">
+                        <?php 
+                            $rank = $beer->getBeerRankings();
+                            if(isset($rank[0])) { 
+                                $ranked = true; 
+                            } else {
+                                $ranked = false;
+                            } 
+                        ?>
+                        <a href="<?php echo $this->baseUrl('/beer/ranking/id/' . $beer->getId()) ?>" class="btn btn-mini btn-beer-rank" data-toggle="tooltip" data-original-title="<?php echo $ranked ? $this->translate('Oceniono') : $this->translate('Oceń') ?>"><?php echo $ranked ? '<i class="icon-star"></i> ' : '<i class="icon-star-empty"></i>' ?></a>
+                        <a href="<?php echo $this->baseUrl('/beerimage/index/id/' . $beer->getId()) ?>" class="btn btn-mini" data-toggle="tooltip" data-original-title="<?php echo $this->translate('Galeria') ?>"><i class="icon-globe"></i></a>
+                        <a href="<?php echo $this->baseUrl('/beer/edit/id/' . $beer->getId()) ?>" class="btn btn-mini" data-toggle="tooltip" data-original-title="<?php echo $this->translate('Edytuj') ?>"><i class="icon-edit"></i></a>
+                        <a href="<?php echo $this->baseUrl('/beer/delete/id/' . $beer->getId()) ?>" class="btn btn-danger btn-mini btn-confirm" data-toggle="tooltip" data-original-title="<?php echo $this->translate('Usuń') ?>"><i class="icon-trash icon-white"></i></a>
+                    </p>
+                    <p class="table-options-bottom">
+                        <span class="badge" data-toggle="tooltip" data-original-title="<?php echo $this->translate('Komentarze oczekujące / wszystkie') ?>">0 / 0</span>
+                        <span class="badge badge-info" data-toggle="tooltip" data-original-title="<?php echo $this->translate('Recenzje oczekujące / wszystkie') ?>">0 / 0</span>
+                    </p>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        <?php endif ?>
+    </table>
+    <?php 
+        $pagParams = array(
+            'items' => $this->options['items'],
+            'order' => $this->options['order'],
+            'desc' => (int)($this->options['desc'])
+        );
+
+        echo $this->paginationControl($this->beers,
+                                'Sliding',
+                                'paginator.phtml', 
+                                array(
+                                    'params' => $pagParams
+                                ));   
+    ?>
+</fieldset>

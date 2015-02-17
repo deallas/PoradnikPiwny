@@ -1,0 +1,14 @@
+<?php 
+
+$title = sprintf(
+            $this->translate('Edytowanie przelicznika "%s" -> "%s"'),
+            $this->currency->getName(),
+            $this->currencyExchanged->getName()
+         );
+$this->headTitle()->append($title);
+
+?>
+<fieldset class="form_container">
+    <legend><?php echo $title ?></legend>
+    <?php echo $this->form ?>
+</fieldset>

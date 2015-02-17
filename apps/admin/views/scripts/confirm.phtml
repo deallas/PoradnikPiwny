@@ -1,0 +1,22 @@
+<?php 
+
+use WS\Tool;
+
+$this->headScript()->appendFile(Tool::getStaticUrl('/js/_admin/confirm.js'));
+$this->headScript()->appendScript(
+        'var QUESTION_DANGER_BTN = "' . $this->translate('Pytanie') . '"' . PHP_EOL .
+        'var ACCEPT_DANGER_BTN = "' . $this->translate('Tak') . '"' . PHP_EOL .
+        'var CANCEL_DANGER_BTN = "' . $this->translate('Nie') . '"'
+);
+?>
+<div id="modal-from-dom" class="modal hide fade">
+    <div class="modal-header">
+        <a href="#" class="close">&times;</a>
+        <h3></h3>
+    </div>
+    <div class="modal-body"></div>
+    <div class="modal-footer">
+        <a href="#" class="btn btn-yes btn-danger"></a>
+        <a href="#" class="btn btn-no secondary"></a>
+    </div>
+</div>

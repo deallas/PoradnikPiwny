@@ -1,0 +1,71 @@
+* {
+    padding: 0p;
+    margin: 0px;
+}
+
+html, body {
+    height: 100%;	
+}
+
+body {
+    background: url('../images/grey-line.png') repeat-x;
+    color: #AAA;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size: 11px;
+    text-align: left;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 15px;
+}
+
+#error_info_table {
+    display: table;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    background: url('../images/grey-line.png') repeat-x scroll center bottom;
+}
+
+#error_info_vcenter {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+
+#error_info_exception, #error_info_hcenter {
+    background: #FFF;
+    padding: 20px;
+}
+
+#error_info_hcenter {
+    margin: 0 auto;
+    text-align: center;
+    padding: 100px;
+}
+
+#error_info span {
+    font-weight: bold;
+}

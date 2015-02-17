@@ -1,0 +1,30 @@
+<?php $this->headTitle()->append($this->translate('Ustawienia logowania')); ?>
+<fieldset class="form_container">
+    <legend><?php echo $this->translate('Ustawienia logowania') ?></legend>
+    <table class="table table-striped table-hover">
+        <tr>
+            <td width="250"><?php echo $this->translate('Blokowanie użytkowników:') ?></td>
+            <td><?php echo ($this->settings['blocker']['enabled']) ? $this->translate('Włączone') : $this->translate('Wyłączone') ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Blokowanie użytkowników po próbie:') ?></td>
+            <td><?php echo $this->settings['blocker']['attempts']['max'] ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Blokowanie na:') ?></td>
+            <td><?php echo $this->timeFormatter($this->settings['blocker']['time']) ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Zapamiętamie prób logowania na:') ?></td>
+            <td><?php echo $this->timeFormatter($this->settings['blocker']['attempts']['time']) ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Captcha:') ?></td>
+            <td><?php echo ($this->settings['recaptcha']['enabled']) ? $this->translate('Włączona') : $this->translate('Wyłączona') ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate('Włączenie captchy po próbie:') ?></td>
+            <td><?php echo $this->settings['recaptcha']['min_attempts'] ?></td>
+        </tr>
+    </table>
+</fieldset>

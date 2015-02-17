@@ -1,0 +1,134 @@
+<?php 
+
+use WS\Tool;
+
+$this->headScript()->appendFile(Tool::getStaticUrl('js/_admin/paginator_options.js'));
+$this->diff_orders = array_diff($this->available_orders, $this->options['orders']);  
+
+$isEnablePaginatorOrders = true;
+if(isset($this->isEnablePaginatorOrders))
+{
+    $isEnablePaginatorOrders = $this->isEnablePaginatorOrders;
+}
+
+$isEnablePaginatorOrder = true;
+if(isset($this->isEnablePaginatorOrder))
+{
+    $isEnablePaginatorOrder = $this->isEnablePaginatorOrder;
+}
+
+$isEnablePaginatorDesc = true;
+if(isset($this->isEnablePaginatorDesc))
+{
+    $isEnablePaginatorDesc = $this->isEnablePaginatorDesc;
+}
+
+$isEnablePaginatorItems = true;
+if(isset($this->isEnablePaginatorItems))
+{
+    $isEnablePaginatorItems = $this->isEnablePaginatorItems;
+}
+
+?>
+<?php if($isEnablePaginatorOrders || $isEnablePaginatorOrder || $isEnablePaginatorItems || $isEnablePaginatorDesc): ?>
+<form class="form form-inline well" id="options_container_form" method="POST">
+    <table id="options_container_main_table">
+        <tbody>
+            <tr>
+                <?php if($isEnablePaginatorOrders): ?>
+                <td><?php echo $this->translate('Nazwy kolumn') ?></td>
+                <td>
+                    <table id="options_container_left_table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="opt_orders_availables[]"><?php echo $this->translate('Dostępne kolumny') ?></label>
+                                    <br />
+                                    <select name="opt_orders_availables[]" multiple="multiple" id="options_container_orders_availables">
+                                        <?php foreach($this->diff_orders as $order): ?>
+                                        <option value="<?php echo $order ?>"><?php echo $this->translate('order_' . $order) ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <button class="btn btn-small" id="b_options_container_left"><i class="icon-caret-left"></i></button><br />
+                                    <button class="btn btn-small" id="b_options_container_right"><i class="icon-caret-right"></i></button>
+                                </td>
+                                <td>
+                                    <label for="opt_orders[]"><?php echo $this->translate('Wybrane kolumny') ?></label>
+                                    <br />
+                                    <select name="opt_orders[]" multiple="multiple" id="options_container_orders">
+                                        <?php foreach($this->options['orders'] as $order): ?>
+                                        <option value="<?php echo $order ?>"><?php echo $this->translate('order_' . $order) ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <button class="btn btn-mini" id="b_options_container_up"><i class="icon-caret-up"></i></button><br />
+                                    <button class="btn btn-mini" id="b_options_container_down"><i class="icon-caret-down"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <?php endif ?>
+                <?php if($isEnablePaginatorOrder || $isEnablePaginatorItems || $isEnablePaginatorDesc): ?>
+                <td>
+                    <table id="options_container_right_table">
+                        <?php if($isEnablePaginatorOrder): ?>
+                        <tr>
+                            <td>
+                                <label for="opt_order"><?php echo $this->translate('Sortuj wyniki wg:') ?></label>
+                            </td>
+                            <td>
+                                <select name="opt_order" class="input-medium">
+                                    <?php foreach($this->available_orders as $order): ?>
+                                    <option value="<?php echo $order ?>"<?php if($order == $this->options['order']): ?> selected="selected"<?php endif ?>><?php echo $this->translate('order_' . $order) ?></option>
+                                    <?php endforeach ?>                                        
+                                </select>
+                            </td>
+                        </tr>
+                        <?php endif ?>
+                        <?php if($isEnablePaginatorDesc): ?>
+                        <tr>
+                            <td>
+                                <label for="opt_desc"><?php echo $this->translate('Rodzaj sortowania:') ?></label>
+                            </td>
+                            <td>
+                                <select name="opt_desc" class="input-medium">
+                                    <option value="0"<?php if($this->options['desc'] == 0): ?> selected="selected"<?php endif ?>><?php echo $this->translate('desc_rosnaco') ?></option>
+                                    <option value="1"<?php if($this->options['desc'] == 1): ?> selected="selected"<?php endif ?>><?php echo $this->translate('desc_malejaco') ?></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <?php endif ?>
+                        <?php if($isEnablePaginatorItems): ?>
+                        <tr>
+                            <td>
+                                <label for="opt_items"><?php echo $this->translate('Ilość rekordów:') ?></label>
+                            </td>
+                            <td>
+                                <select name="opt_items" class="input-mini">
+                                    <?php foreach(array(10,20,30,50) as $count): ?>
+                                    <option value="<?php echo $count ?>"<?php if($count == $this->options['items']): ?> selected="selected"<?php endif; ?>><?php echo $count ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <?php endif ?>
+                        <tr id="b_options_container_left_table">
+                            <td>
+                                <button type="submit" class="btn btn-inverse btn-mini" name="submit" id="b_options_container_save"><i class="icon-save"></i> <?php echo $this->translate('Zapisz') ?></button>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-danger btn-mini" name="reset"><i class="icon-off"></i> <?php echo $this->translate('Resetuj') ?></button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <?php endif ?>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<?php endif ?>

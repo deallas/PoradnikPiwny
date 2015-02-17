@@ -1,0 +1,86 @@
+<?php echo $this->doctype() . PHP_EOL ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <?php echo $this->headTitle() . PHP_EOL ?>
+        <?php echo $this->headMeta() . PHP_EOL ?>
+        <?php echo $this->headLink() . PHP_EOL ?>
+        <?php echo $this->headScript() . PHP_EOL ?>
+        <base href="<?php echo ADMIN_APPLICATION_URL ?>" />
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                    <div class="container">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="<?php echo $this->baseUrl('/') ?>">PP Admin</a>
+                        <div class="nav-collapse">
+                            <?php echo $this->navigation()->menu()->setMaxDepth(0)->setUlClass('nav'); ?>
+                            <ul class="nav pull-right">
+                                <li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'logout')) ?>"><?php echo sprintf($this->translate('Wyloguj [%s]'), $this->user->getVisibleName()) ?></a></li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="admin-container">
+            <div class="container container-fluid content-container">
+                <div class="row-fluid">
+                    <div class="span2">
+                        <div class="well" id="menu-left">
+                        <?php 
+                            $next = $this->navigation()->getContainer();
+                            $previous = $next;
+                            $depth = 0;
+                            while(1) 
+                            {
+                                $next = $this->navigation()->menu()->findActive($next);
+                                if(empty($next)) break;				
+                                $depth++;
+                                $previous = $next['page'];
+                                $next = $previous;
+                            }
+                            $parent = null;
+                            if($previous instanceof \Zend_Navigation_Page)
+                            {
+                                $parent = $previous->getParent();
+                            }
+                        ?>
+                        <?php if ($depth != 1 && $parent != null): ?>
+                            <ul class="nav nav-list">
+                                <li class="nav-previous"><a href="<?php echo $parent->getHref(); ?>"><?php echo $this->translate('POWRÓT') ?></a></li>
+                            </ul>
+                        <?php endif ?>
+                        <?php 
+                            echo $this->navigation()
+                                    ->menu()
+                                    ->setUlClass('nav nav-list')
+                                    ->setRenderParents(true)
+                                    ->setMinDepth(0)
+                                    ->setMaxDepth(0)
+                                    ->setIndent(12)
+                                    ->renderMenu($previous);
+                        ?>
+                        </div>
+                    </div>
+                    <div class="span10">                     
+                        <?php echo $this->navigation()->breadcrumbs()
+                                ->setMinDepth(0)
+                                ->setLinkLast(true)
+                                ->setPartial(array('breadcrumb.phtml','default')); 
+                        ?>
+                        <?php echo $this->flashMessenger() ?>
+                        <?php echo $this->layout()->content; ?>
+                    </div>                   
+                </div>
+            </div>
+            <div id="footer">
+                <div class="container">Powered By PP Admin &copy; 2012-2013</div>
+            </div>
+        </div>
+    </body>
+</html>

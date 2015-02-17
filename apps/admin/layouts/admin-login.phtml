@@ -1,0 +1,37 @@
+<?php echo $this->doctype() . PHP_EOL ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <?php echo $this->headTitle() . PHP_EOL ?>
+        <?php echo $this->headMeta() . PHP_EOL ?>
+        <?php echo $this->headLink() . PHP_EOL ?>
+        <?php echo $this->headScript() . PHP_EOL ?>
+        <base href="<?php echo ADMIN_APPLICATION_URL ?>" />
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                    <div class="container">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="<?php echo $this->baseUrl('/') ?>">PP Admin</a>
+                    </div>
+            </div>
+        </div>
+        
+        <div class="admin-container">
+            <div class="container container-fluid content-container">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="span7 login-container">
+                            <?php echo $this->flashMessenger() ?>
+                            <?php echo $this->layout()->content; ?>	
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

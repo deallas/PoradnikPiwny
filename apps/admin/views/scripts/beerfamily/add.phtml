@@ -1,0 +1,16 @@
+<?php 
+
+use WS\Tool;
+
+$title = $this->translate('Dodawanie nowego potomka');
+$this->headScript()->appendFile(Tool::getStaticUrl('js/_admin/beerfamily_add.js'));
+$this->headTitle()->append($title); 
+
+$this->headScript()->appendScript(
+    'var MSG_DELETE = "' . $this->translate('Usuń') . '"'
+);
+?>
+<fieldset class="form_container">
+    <legend><?php echo $title ?></legend>
+    <?php echo $this->form ?>
+</fieldset>

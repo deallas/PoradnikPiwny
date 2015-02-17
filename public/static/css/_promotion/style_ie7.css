@@ -1,0 +1,16 @@
+#i_email {
+    height: 29px;
+    line-height: 29px;
+    border: 2px solid #FFF;
+    float: left;
+}
+#i_submit {
+    padding: 0 !important;
+    float: right;
+}
+#t_statute {
+    clear: both;
+}
+#container {
+    overflow-x: hidden;
+}

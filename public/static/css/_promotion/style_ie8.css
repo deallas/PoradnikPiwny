@@ -1,0 +1,9 @@
+#i_email {
+    height: 29px;
+    line-height: 29px;
+    border: 2px solid #FFF;
+}
+#i_submit {
+    left: -3px;
+    padding-right: 10px;
+}
